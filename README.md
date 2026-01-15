@@ -63,6 +63,7 @@ Criar um sistema onde usuários possam reservar horários (ex: sala, consulta m�
 |------|--------|
 | nome | string |
 | email | string |
+| senha | hash  |
 
 ---
 

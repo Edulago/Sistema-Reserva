@@ -1,24 +1,93 @@
-# README
+# 🏨 Projeto 5 — Sistema de Reservas (Rails + MVC)
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## 🎯 Objetivo
 
-Things you may want to cover:
+Criar um sistema onde usuários possam reservar horários (ex: sala, consulta médica ou restaurante), evitando conflitos de datas.
 
-* Ruby version
+---
 
-* System dependencies
+## 📌 Escopo do Projeto (MVP)
 
-* Configuration
+### Funcionalidades
 
-* Database creation
+- Criar reservas
+- Listar reservas
+- Ver detalhes de uma reserva
+- Evitar reservas em horários já ocupados
+- Cancelar reserva
 
-* Database initialization
+---
 
-* How to run the test suite
+## 🧱 Estrutura MVC
 
-* Services (job queues, cache servers, search engines, etc.)
+### 📦 Models
 
-* Deployment instructions
+- Usuario
+- Reserva
+- Sala (ou Médico / Mesa / Recurso)
 
-* ...
+---
+
+### 🧠 Regras de Negócio (Model)
+
+- Uma sala não pode ter duas reservas no mesmo horário
+- A data da reserva não pode ser no passado
+- A reserva pertence a um usuário e a uma sala
+
+---
+
+### 🎮 Controllers
+
+- ReservasController
+- SalasController
+- UsuariosController
+
+> Controllers devem ser simples, sem regras de negócio pesadas.
+
+---
+
+### 🎨 Views
+
+- `reservas/index` → lista de reservas
+- `reservas/new` → formulário de nova reserva
+- `reservas/show` → detalhes da reserva
+- `salas/index` → lista de salas
+
+---
+
+## 🗄️ Modelagem do Banco de Dados
+
+### Usuario
+
+| Campo | Tipo   |
+|------|--------|
+| nome | string |
+| email | string |
+
+---
+
+### Sala
+
+| Campo | Tipo    |
+|------|---------|
+| nome | string  |
+| capacidade | integer |
+
+---
+
+### Reserva
+
+| Campo | Tipo |
+|------|------|
+| usuario_id | references |
+| sala_id | references |
+| data_inicio | datetime |
+| data_fim | datetime |
+
+---
+
+## 📌 Observações
+
+- O sistema deve impedir conflitos de horário no momento da criação da reserva
+- As validações devem ficar concentradas no **Model**
+- O projeto segue o padrão **MVC do Ruby on Rails**
